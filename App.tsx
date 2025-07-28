@@ -1,0 +1,384 @@
+/**
+ * App.tsx - Main React Native application component
+ * 
+ * Root component that sets up navigation, providers, and core app structure.
+ * Implements proper React Native patterns with TypeScript support.
+ */
+
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  Platform,
+} from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import * as MediaLibrary from 'expo-media-library';
+import * as Haptics from 'expo-haptics';
+
+// UI Components
+import SwipeCard from './src/ui/SwipeCard';
+import TabNavigation from './src/ui/TabNavigation';
+import PermissionScreen from './src/ui/PermissionScreen';
+import StatsScreen from './src/ui/StatsScreen';
+import SettingsScreen from './src/ui/SettingsScreen';
+import SpinWheel from './src/ui/SpinWheel';
+
+// Types
+import { PhotoItem } from './packages/shared/types/PhotoItem';
+
+// Sample data for development
+const samplePhotos: PhotoItem[] = [
+  {
+    id: '1',
+    uri: 'https://images.pexels.com/photos/1804099/pexels-photo-1804099.jpeg?auto=compress&cs=tinysrgb&w=400',
+    filename: 'sample1.jpg',
+    width: 400,
+    height: 600,
+    fileSize: 150000,
+    mimeType: 'image/jpeg',
+    creationTime: Date.now() - 86400000,
+    modificationTime: Date.now() - 86400000,
+  },
+  {
+    id: '2',
+    uri: 'https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&w=400',
+    filename: 'sample2.jpg',
+    width: 400,
+    height: 600,
+    fileSize: 200000,
+    mimeType: 'image/jpeg',
+    creationTime: Date.now() - 172800000,
+    modificationTime: Date.now() - 172800000,
+  },
+  {
+    id: '3',
+    uri: 'https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?auto=compress&cs=tinysrgb&w=400',
+    filename: 'sample3.jpg',
+    width: 400,
+    height: 600,
+    fileSize: 180000,
+    mimeType: 'image/jpeg',
+    creationTime: Date.now() - 259200000,
+    modificationTime: Date.now() - 259200000,
+  },
+];
+
+const sortOptions = ['Oldest First', 'Newest First', 'Random', 'By Location'];
+
+export default function App() {
+  // State management
+  const [hasPermissions, setHasPermissions] = useState(false);
+  const [activeTab, setActiveTab] = useState('clean');
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [cleanedCount, setCleanedCount] = useState(0);
+  const [sortOrder, setSortOrder] = useState('Oldest First');
+  const [showSortModal, setShowSortModal] = useState(false);
+  const [photos, setPhotos] = useState<PhotoItem[]>(samplePhotos);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const currentPhoto = photos[currentPhotoIndex];
+
+  /**
+   * Request media library permissions on app start
+   */
+  useEffect(() => {
+    requestPermissions();
+  }, []);
+
+  /**
+   * Requests necessary permissions for photo access
+   */
+  const requestPermissions = async () => {
+    try {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      setHasPermissions(status === 'granted');
+    } catch (error) {
+      console.error('Permission request failed:', error);
+      setHasPermissions(false);
+    }
+  };
+
+  /**
+   * Handles swipe actions on photos
+   * @param direction - Swipe direction (left, right, up, down)
+   */
+  const handleSwipeAction = async (direction: 'left' | 'right' | 'up' | 'down') => {
+    // Provide haptic feedback
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    
+    setIsAnimating(true);
+    
+    // Map direction to action
+    let action: string;
+    switch (direction) {
+      case 'left':
+        action = 'delete';
+        break;
+      case 'right':
+        action = 'keep';
+        break;
+      case 'up':
+        action = 'share';
+        break;
+      case 'down':
+        action = 'private';
+        break;
+      default:
+        action = 'keep';
+    }
+
+    // Log action (in production, this would update the backend)
+    console.log(`Photo ${currentPhoto.id} action: ${action}`);
+
+    // Update counters
+    setCleanedCount(prev => prev + 1);
+
+    // Move to next photo after animation
+    setTimeout(() => {
+      setCurrentPhotoIndex(prev => (prev + 1) % photos.length);
+      setIsAnimating(false);
+    }, 800);
+  };
+
+  /**
+   * Handles sort option selection
+   * @param option - Selected sort option
+   */
+  const handleSortSelect = (option: string) => {
+    setSortOrder(option);
+    setShowSortModal(false);
+    
+    // Apply sorting logic (simplified for demo)
+    let sortedPhotos = [...photos];
+    switch (option) {
+      case 'Newest First':
+        sortedPhotos.sort((a, b) => b.creationTime - a.creationTime);
+        break;
+      case 'Oldest First':
+        sortedPhotos.sort((a, b) => a.creationTime - b.creationTime);
+        break;
+      case 'Random':
+        sortedPhotos.sort(() => Math.random() - 0.5);
+        break;
+      case 'By Location':
+        // Placeholder for location-based sorting
+        break;
+    }
+    
+    setPhotos(sortedPhotos);
+    setCurrentPhotoIndex(0);
+  };
+
+  /**
+   * Handles permission grant from permission screen
+   */
+  const handleGrantPermissions = () => {
+    setHasPermissions(true);
+  };
+
+  // Show permission screen if permissions not granted
+  if (!hasPermissions) {
+    return (
+      <GestureHandlerRootView style={styles.container}>
+        <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
+        <PermissionScreen onGrantPermissions={handleGrantPermissions} />
+      </GestureHandlerRootView>
+    );
+  }
+
+  // Render different screens based on active tab
+  const renderScreen = () => {
+    switch (activeTab) {
+      case 'stats':
+        return <StatsScreen />;
+      case 'settings':
+        return <SettingsScreen />;
+      case 'gallery':
+        return (
+          <View style={styles.galleryContainer}>
+            <Text style={styles.galleryTitle}>Gallery</Text>
+            <Text style={styles.gallerySubtitle}>Photo grid will be implemented here</Text>
+          </View>
+        );
+      case 'clean':
+      default:
+        return (
+          <View style={styles.cleanContainer}>
+            {/* Header */}
+            <View style={styles.header}>
+              <Text style={styles.counterText}>
+                Total ({cleanedCount} Cleaned)
+              </Text>
+              <Text 
+                style={styles.sortButton}
+                onPress={() => setShowSortModal(true)}
+              >
+                {sortOrder}
+              </Text>
+            </View>
+
+            {/* Main Card Area */}
+            <View style={styles.cardContainer}>
+              {currentPhoto && (
+                <SwipeCard
+                  photo={currentPhoto}
+                  onSwipe={handleSwipeAction}
+                  isAnimating={isAnimating}
+                />
+              )}
+            </View>
+
+            {/* Progress Indicator */}
+            <View style={styles.progressContainer}>
+              <View style={styles.progressCard}>
+                <View style={styles.progressHeader}>
+                  <Text style={styles.progressLabel}>Progress</Text>
+                  <Text style={styles.progressCount}>
+                    {currentPhotoIndex + 1} / {photos.length}
+                  </Text>
+                </View>
+                <View style={styles.progressBar}>
+                  <View 
+                    style={[
+                      styles.progressFill,
+                      { width: `${((currentPhotoIndex + 1) / photos.length) * 100}%` }
+                    ]} 
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        );
+    }
+  };
+
+  return (
+    <GestureHandlerRootView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
+      <SafeAreaView style={styles.safeArea}>
+        {renderScreen()}
+        
+        {/* Sort Modal */}
+        {showSortModal && (
+          <SpinWheel
+            options={sortOptions}
+            selectedOption={sortOrder}
+            onSelect={handleSortSelect}
+            onClose={() => setShowSortModal(false)}
+          />
+        )}
+        
+        {/* Tab Navigation */}
+        <TabNavigation 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
+        />
+      </SafeAreaView>
+    </GestureHandlerRootView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  safeArea: {
+    flex: 1,
+  },
+  cleanContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 16,
+  },
+  counterText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  sortButton: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#007AFF',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e5e5e7',
+    overflow: 'hidden',
+  },
+  cardContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  progressContainer: {
+    paddingBottom: 20,
+  },
+  progressCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  progressLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#666',
+  },
+  progressCount: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1a1a1a',
+  },
+  progressBar: {
+    height: 8,
+    backgroundColor: '#e5e5e7',
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#007AFF',
+    borderRadius: 4,
+  },
+  galleryContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  galleryTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1a1a1a',
+    marginBottom: 8,
+  },
+  gallerySubtitle: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+  },
+});

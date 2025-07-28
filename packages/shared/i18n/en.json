@@ -1,0 +1,184 @@
+{
+  "app": {
+    "name": "CleanSlate",
+    "tagline": "Transform photo chaos into organized bliss"
+  },
+  "permissions": {
+    "title": "Welcome to CleanSlate",
+    "subtitle": "We need a few permissions to help you organize your photos",
+    "photoLibrary": {
+      "title": "Photo Library Access",
+      "description": "View and organize your photos",
+      "required": true
+    },
+    "deletePhotos": {
+      "title": "Delete Photos",
+      "description": "Remove unwanted photos safely",
+      "required": true
+    },
+    "privateStorage": {
+      "title": "Private Storage",
+      "description": "Secure storage for private photos",
+      "required": true
+    },
+    "grantButton": "Grant Permissions",
+    "privacyNote": "Your privacy is important to us. We only access photos to help you organize them."
+  },
+  "tabs": {
+    "clean": "Clean",
+    "gallery": "Gallery",
+    "stats": "Stats",
+    "settings": "Settings"
+  },
+  "clean": {
+    "title": "Clean Your Photos",
+    "counter": "Total ({{cleaned}} Cleaned)",
+    "progress": "Progress",
+    "sortButton": "{{sortOrder}}",
+    "actions": {
+      "keep": "Keep",
+      "delete": "Delete",
+      "share": "Share",
+      "private": "Private"
+    },
+    "swipeHints": {
+      "left": "Swipe left to delete",
+      "right": "Swipe right to keep",
+      "up": "Swipe up to share",
+      "down": "Swipe down to make private"
+    }
+  },
+  "sort": {
+    "title": "Sort Photos",
+    "subtitle": "Choose your sorting preference",
+    "feelingLucky": "Feeling Lucky?",
+    "spinning": "Spinning...",
+    "cancel": "Cancel",
+    "options": {
+      "oldestFirst": "Oldest First",
+      "newestFirst": "Newest First",
+      "random": "Random",
+      "byLocation": "By Location"
+    }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "totalImages": "Total Images ({{selected}} Selected)",
+    "shareButton": "Share",
+    "backButton": "Back",
+    "selectPhotos": "Select photos to share"
+  },
+  "stats": {
+    "title": "Statistics",
+    "subtitle": "Your photo management insights",
+    "storage": {
+      "title": "Device Storage",
+      "usage": "Storage Usage",
+      "used": "{{used}} of {{total}} used",
+      "photos": "Photos",
+      "available": "Available"
+    },
+    "photoManagement": {
+      "title": "Photo Management",
+      "totalPhotos": "Total Photos",
+      "photosCleaned": "Photos Cleaned",
+      "photosDeleted": "Photos Deleted",
+      "photosKept": "Photos Kept"
+    },
+    "actions": {
+      "title": "Actions Taken",
+      "shared": "Shared",
+      "private": "Made Private"
+    },
+    "usage": {
+      "title": "App Usage",
+      "sessionsThisWeek": "Sessions This Week",
+      "timeSaved": "Time Saved",
+      "lastSession": "Last Session",
+      "avgSession": "Avg. Session",
+      "keepUpWork": "Keep up the great work!",
+      "byUsingEfficiently": "By using CleanSlate efficiently"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your CleanSlate experience",
+    "appearance": {
+      "title": "Appearance",
+      "darkMode": "Dark Mode",
+      "darkModeDesc": "Switch between light and dark themes",
+      "themeColor": "Theme Color",
+      "themeColorDesc": "Customize accent colors"
+    },
+    "behavior": {
+      "title": "Behavior",
+      "autoDelete": "Auto-Delete",
+      "autoDeleteDesc": "Automatically delete photos after 30 days",
+      "hapticFeedback": "Haptic Feedback",
+      "hapticFeedbackDesc": "Feel vibrations when swiping",
+      "notifications": "Notifications",
+      "notificationsDesc": "Get reminders to clean your photos"
+    },
+    "privacy": {
+      "title": "Privacy & Security",
+      "privateStorage": "Private Storage",
+      "privateStorageDesc": "Manage your private photo vault",
+      "appLock": "App Lock",
+      "appLockDesc": "Require Face ID to open app"
+    },
+    "storage": {
+      "title": "Storage",
+      "management": "Storage Management",
+      "managementDesc": "View and manage app storage"
+    },
+    "about": {
+      "title": "About",
+      "aboutApp": "About CleanSlate",
+      "version": "Version 1.0.0"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "resetSettings": "Reset All Settings"
+    }
+  },
+  "achievements": {
+    "firstSteps": {
+      "name": "First Steps",
+      "description": "Process your first photo"
+    },
+    "photoMaster": {
+      "name": "Photo Master",
+      "description": "Process 100 photos"
+    },
+    "declutterChampion": {
+      "name": "Declutter Champion",
+      "description": "Delete 50 photos"
+    },
+    "sharingEnthusiast": {
+      "name": "Sharing Enthusiast",
+      "description": "Share 25 photos"
+    },
+    "privacyGuardian": {
+      "name": "Privacy Guardian",
+      "description": "Make 10 photos private"
+    },
+    "streakWarrior": {
+      "name": "Streak Warrior",
+      "description": "Maintain a 7-day streak"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "share": "Share",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "done": "Done"
+  }
+}

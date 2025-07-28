@@ -1,0 +1,184 @@
+{
+  "app": {
+    "name": "كلين سليت",
+    "tagline": "حول فوضى الصور إلى تنظيم مثالي"
+  },
+  "permissions": {
+    "title": "مرحباً بك في كلين سليت",
+    "subtitle": "نحتاج بعض الأذونات لمساعدتك في تنظيم صورك",
+    "photoLibrary": {
+      "title": "الوصول إلى مكتبة الصور",
+      "description": "عرض وتنظيم صورك",
+      "required": true
+    },
+    "deletePhotos": {
+      "title": "حذف الصور",
+      "description": "إزالة الصور غير المرغوب فيها بأمان",
+      "required": true
+    },
+    "privateStorage": {
+      "title": "التخزين الخاص",
+      "description": "تخزين آمن للصور الخاصة",
+      "required": true
+    },
+    "grantButton": "منح الأذونات",
+    "privacyNote": "خصوصيتك مهمة بالنسبة لنا. نحن نصل فقط إلى الصور لمساعدتك في تنظيمها."
+  },
+  "tabs": {
+    "clean": "تنظيف",
+    "gallery": "المعرض",
+    "stats": "الإحصائيات",
+    "settings": "الإعدادات"
+  },
+  "clean": {
+    "title": "نظف صورك",
+    "counter": "المجموع ({{cleaned}} تم تنظيفها)",
+    "progress": "التقدم",
+    "sortButton": "{{sortOrder}}",
+    "actions": {
+      "keep": "احتفظ",
+      "delete": "احذف",
+      "share": "شارك",
+      "private": "خاص"
+    },
+    "swipeHints": {
+      "left": "اسحب يساراً للحذف",
+      "right": "اسحب يميناً للاحتفاظ",
+      "up": "اسحب للأعلى للمشاركة",
+      "down": "اسحب للأسفل لجعلها خاصة"
+    }
+  },
+  "sort": {
+    "title": "ترتيب الصور",
+    "subtitle": "اختر تفضيل الترتيب",
+    "feelingLucky": "تشعر بالحظ؟",
+    "spinning": "يدور...",
+    "cancel": "إلغاء",
+    "options": {
+      "oldestFirst": "الأقدم أولاً",
+      "newestFirst": "الأحدث أولاً",
+      "random": "عشوائي",
+      "byLocation": "حسب الموقع"
+    }
+  },
+  "gallery": {
+    "title": "المعرض",
+    "totalImages": "إجمالي الصور ({{selected}} محددة)",
+    "shareButton": "مشاركة",
+    "backButton": "رجوع",
+    "selectPhotos": "حدد الصور للمشاركة"
+  },
+  "stats": {
+    "title": "الإحصائيات",
+    "subtitle": "رؤى إدارة صورك",
+    "storage": {
+      "title": "تخزين الجهاز",
+      "usage": "استخدام التخزين",
+      "used": "{{used}} من {{total}} مستخدم",
+      "photos": "الصور",
+      "available": "متاح"
+    },
+    "photoManagement": {
+      "title": "إدارة الصور",
+      "totalPhotos": "إجمالي الصور",
+      "photosCleaned": "الصور المنظفة",
+      "photosDeleted": "الصور المحذوفة",
+      "photosKept": "الصور المحتفظ بها"
+    },
+    "actions": {
+      "title": "الإجراءات المتخذة",
+      "shared": "مشتركة",
+      "private": "جعلت خاصة"
+    },
+    "usage": {
+      "title": "استخدام التطبيق",
+      "sessionsThisWeek": "الجلسات هذا الأسبوع",
+      "timeSaved": "الوقت المحفوظ",
+      "lastSession": "آخر جلسة",
+      "avgSession": "متوسط الجلسة",
+      "keepUpWork": "استمر في العمل الرائع!",
+      "byUsingEfficiently": "باستخدام كلين سليت بكفاءة"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "subtitle": "خصص تجربة كلين سليت الخاصة بك",
+    "appearance": {
+      "title": "المظهر",
+      "darkMode": "الوضع المظلم",
+      "darkModeDesc": "التبديل بين السمات الفاتحة والمظلمة",
+      "themeColor": "لون السمة",
+      "themeColorDesc": "تخصيص الألوان المميزة"
+    },
+    "behavior": {
+      "title": "السلوك",
+      "autoDelete": "الحذف التلقائي",
+      "autoDeleteDesc": "حذف الصور تلقائياً بعد 30 يوماً",
+      "hapticFeedback": "التغذية الراجعة اللمسية",
+      "hapticFeedbackDesc": "الشعور بالاهتزازات عند السحب",
+      "notifications": "الإشعارات",
+      "notificationsDesc": "احصل على تذكيرات لتنظيف صورك"
+    },
+    "privacy": {
+      "title": "الخصوصية والأمان",
+      "privateStorage": "التخزين الخاص",
+      "privateStorageDesc": "إدارة خزانة صورك الخاصة",
+      "appLock": "قفل التطبيق",
+      "appLockDesc": "يتطلب Face ID لفتح التطبيق"
+    },
+    "storage": {
+      "title": "التخزين",
+      "management": "إدارة التخزين",
+      "managementDesc": "عرض وإدارة تخزين التطبيق"
+    },
+    "about": {
+      "title": "حول",
+      "aboutApp": "حول كلين سليت",
+      "version": "الإصدار 1.0.0"
+    },
+    "dangerZone": {
+      "title": "منطقة الخطر",
+      "resetSettings": "إعادة تعيين جميع الإعدادات"
+    }
+  },
+  "achievements": {
+    "firstSteps": {
+      "name": "الخطوات الأولى",
+      "description": "معالجة صورتك الأولى"
+    },
+    "photoMaster": {
+      "name": "سيد الصور",
+      "description": "معالجة 100 صورة"
+    },
+    "declutterChampion": {
+      "name": "بطل التنظيف",
+      "description": "حذف 50 صورة"
+    },
+    "sharingEnthusiast": {
+      "name": "متحمس المشاركة",
+      "description": "مشاركة 25 صورة"
+    },
+    "privacyGuardian": {
+      "name": "حارس الخصوصية",
+      "description": "جعل 10 صور خاصة"
+    },
+    "streakWarrior": {
+      "name": "محارب الخط",
+      "description": "الحفاظ على خط 7 أيام"
+    }
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "delete": "حذف",
+    "share": "مشاركة",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "done": "تم"
+  }
+}

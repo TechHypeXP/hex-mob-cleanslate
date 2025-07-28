@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "CleanSlate",
+    "slug": "cleanslate-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cleanslate.mobile",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "CleanSlate needs access to your photo library to help you organize and manage your photos efficiently.",
+        "NSPhotoLibraryAddUsageDescription": "CleanSlate needs permission to save organized photos back to your library.",
+        "NSCameraUsageDescription": "CleanSlate may need camera access for photo capture features."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.cleanslate.mobile",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "CAMERA",
+        "VIBRATE"
+      ]
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow CleanSlate to access your photos for organization and management.",
+          "savePhotosPermission": "Allow CleanSlate to save organized photos to your library.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ],
+      "react-native-reanimated/plugin"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
