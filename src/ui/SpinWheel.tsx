@@ -21,7 +21,7 @@ import Animated, {
   runOnJS,
   interpolate,
   Extrapolate,
-} from 'react-native-worklets';
+} from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 
 interface SpinWheelProps {
