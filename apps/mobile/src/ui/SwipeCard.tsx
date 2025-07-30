@@ -1,6 +1,6 @@
 import React from 'react';
-import { GestureResponderEvent, StyleSheet, View } from 'react-native';
-import { PhotoItem } from '../../domain/PhotoModel';
+import { GestureResponderEvent, Image, StyleSheet, View } from 'react-native';
+import { PhotoItem } from '../../../domain/PhotoModel';
 
 interface SwipeCardProps {
   photo: PhotoItem;
@@ -22,6 +22,15 @@ export const SwipeCard: React.FC<SwipeCardProps> = ({
 };
 
 const styles = StyleSheet.create({
-  container: { ... },
-  image: { ... }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  image: {
+    width: 300,
+    height: 400,
+    borderRadius: 10,
+    resizeMode: 'cover'
+  }
 });
