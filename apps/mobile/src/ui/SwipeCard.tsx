@@ -1,6 +1,6 @@
 import React from 'react';
 import { GestureResponderEvent, Image, StyleSheet, View } from 'react-native';
-import { PhotoItem } from '../../../domain/PhotoModel';
+import { PhotoItem } from '../../domain/PhotoModel';
 
 interface SwipeCardProps {
   photo: PhotoItem;
