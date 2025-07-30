@@ -49,7 +49,7 @@
           "isAccessMediaLocationEnabled": true
         }
       ],
-      "react-native-worklets/plugin"
+      "react-native-reanimated/plugin"
     ],
     "experiments": {
       "typedRoutes": true
