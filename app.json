@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CleanSlate",
-    "slug": "cleanslate-mobile",
+    "name": "hex-mob-cleanslate",
+    "slug": "hex-mob-cleanslate",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
