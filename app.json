@@ -48,8 +48,7 @@
           "savePhotosPermission": "Allow CleanSlate to save organized photos to your library.",
           "isAccessMediaLocationEnabled": true
         }
-      ],
-      "react-native-reanimated/plugin"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
