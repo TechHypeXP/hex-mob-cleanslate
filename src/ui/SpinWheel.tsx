@@ -57,9 +57,11 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ options, selectedOption, onSelect
     const spins = 5 + Math.random() * 3; // 5-8 full rotations
     const finalRotation = rotation.value + (spins * 360) + (randomIndex * segmentAngle);
     
-    rotation.value = withTiming(finalRotation, { duration: 3000 }, () => {
-      runOnJS(setIsSpinning(false));
-      runOnJS(onSelect)(options[randomIndex]);
+    rotation.value = withTiming(finalRotation, { duration: 3000 }, (finished) => {
+      if (finished) {
+        runOnJS(setIsSpinning)(false);
+        runOnJS(onSelect)(options[randomIndex]);
+      }
     });
   };
 
