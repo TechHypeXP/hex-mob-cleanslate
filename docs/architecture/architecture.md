@@ -113,11 +113,53 @@ Each layer has a specific responsibility:
 ## Technology Stack
 - **Framework**: React Native with Expo
 - **Architecture**: Hexagonal Architecture with DDD
-- **State Management**: React Context API
+- **State Management**: Redux Toolkit
 - **Navigation**: React Navigation
 - **Testing**: Jest and React Native Testing Library
 - **Build System**: Expo CLI
 - **Deployment**: Expo Application Services (EAS)
+
+## Photo Permissions Implementation
+
+### Overview
+The photo permissions system handles cross-platform photo library access using Expo APIs with full i18n integration and Redux state management.
+
+### Architecture
+- **Service Layer**: PhotoPermissionService in application layer handles permission logic
+- **State Management**: Redux store manages permission state across the application
+- **UI Layer**: PermissionScreen displays permission status and handles user interactions
+- **Internationalization**: i18next integration for multi-language support
+
+### Components
+1. **PhotoPermissionService** (Application Layer)
+   - Requests and checks photo library permissions using Expo MediaLibrary API
+   - Returns structured results for UI consumption
+   - Handles permission errors gracefully
+
+2. **Redux Store** (Infrastructure Layer)
+   - Manages photo library permission state
+   - Tracks permission status, canAskAgain flag, and granted state
+   - Handles loading and error states
+
+3. **PermissionScreen** (UI Layer)
+   - Displays current permission status to the user
+   - Provides UI for requesting permissions
+   - Shows appropriate messages based on permission state
+   - Supports RTL layouts and i18n
+
+### Data Flow
+1. PermissionScreen initializes and checks current permission status
+2. PhotoPermissionService handles Expo API calls
+3. Redux store updates with permission results
+4. PermissionScreen re-renders with updated status
+5. User can request permissions through UI
+6. Process repeats with updated state
+
+### Privacy Considerations
+- Only requests necessary permissions (photo library access)
+- Respects user privacy by not accessing media without explicit permission
+- Follows platform-specific permission guidelines
+- Provides clear explanations of why permissions are needed
 
 ## Development Guidelines
 1. Follow the established folder structure and naming conventions
