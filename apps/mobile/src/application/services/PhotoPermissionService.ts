@@ -81,7 +81,7 @@ export class PhotoPermissionService implements PhotoPermissionServiceInterface {
       };
     } catch (error) {
       // Log permission check errors (privacy-safe)
-      console.warn('Permission check failed:', error);
+      console.error('Permission check error:', error);
       
       return {
         status: PermissionStatus.UNDETERMINED,
