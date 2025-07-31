@@ -15,6 +15,27 @@ Screens are top-level UI components that represent entire application screens or
 - **StatsScreen**: Displays user statistics and analytics
 - **Main Screens**: Core application screens for primary functionality
 
+## PermissionScreen
+The PermissionScreen handles photo library permission requests and displays the current permission status to the user. It follows the DDD/Hexagonal architecture by using the PhotoPermissionService for business logic and Redux for state management.
+
+### Features
+- Requests photo library permissions from the user
+- Displays current permission status
+- Shows appropriate messages based on permission state
+- Handles loading and error states
+- Supports internationalization (i18n)
+
+### Architecture
+- **Service Layer**: Uses PhotoPermissionService for permission logic
+- **State Management**: Uses Redux for managing permission state
+- **Internationalization**: Uses i18next for multi-language support
+- **UI Components**: Uses React Native components for presentation
+
+### Dependencies
+- PhotoPermissionService (application layer)
+- Redux store (infrastructure layer)
+- i18next (shared package)
+
 ## Developer Guidelines
 - Each screen should have a single, focused purpose
 - Screens should coordinate components rather than implement complex logic
