@@ -2,29 +2,33 @@
  * Redux Store Configuration
  * 
  * Centralized state management for the CleanSlate Mobile App.
- * Follows Redux best practices with proper typing and middleware.
+ * Uses Redux Toolkit for simplified configuration and best practices.
  */
 
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 
 // Import reducers
 import permissionsReducer from './permissionsSlice';
 
-// Combine all reducers
-const rootReducer = combineReducers({
-  permissions: permissionsReducer,
+// Create store with Redux Toolkit
+const store = configureStore({
+  reducer: {
+    permissions: permissionsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore Expo MediaLibrary PermissionStatus in serialization check
+        ignoredActions: ['permissions/setPhotoLibraryPermission'],
+        ignoredPaths: ['permissions.photoLibrary.status'],
+      },
+    }),
 });
 
 // Define root state type
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
 
-// Create store with middleware
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+// Define dispatch type
+export type AppDispatch = typeof store.dispatch;
 
 export default store;
