@@ -1,0 +1,13 @@
+
+storage:
+  storage_path: "/home/kellyb_dev/projects/hex-mob-cleanslate/qdrant_storage"
+
+service:
+  host: "0.0.0.0"
+  port: 6333
+  grpc_port: 6334
+
+cluster:
+  enabled: false
+
+log_level: INFO
