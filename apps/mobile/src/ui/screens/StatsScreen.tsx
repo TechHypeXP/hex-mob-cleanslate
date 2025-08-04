@@ -1,12 +1,18 @@
-// Placeholder for StatsScreen - will be implemented according to UI layer principles
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 
-export const StatsScreen = () => {
+export default function StatsScreen() {
   return (
-    <View>
-      <Text>Stats Screen</Text>
-      {/* TODO: Implement stats screen according to UI layer rules */}
-    </View>
+    <SafeAreaView style={styles.container} testID="stats-screen">
+      <View style={styles.content}>
+        <Text style={styles.title}>Stats Screen</Text>
+      </View>
+    </SafeAreaView>
   );
-};
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#F8FAFC' },
+  content: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  title: { fontSize: 24, fontWeight: 'bold', color: '#1F2937' },
+});

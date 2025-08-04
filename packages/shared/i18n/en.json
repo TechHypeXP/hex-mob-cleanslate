@@ -179,6 +179,10 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "done": "Done"
+    "done": "Done",
+    "select": "Select",
+    "selected": "Selected",
+    "selectAll": "Select All",
+    "deselect": "Deselect"
   }
 }

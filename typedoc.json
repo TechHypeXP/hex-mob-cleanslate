@@ -1,0 +1,5 @@
+{
+  "entryPoints": ["apps/mobile/src"],
+  "entryPointStrategy": "expand",
+  "out": "docs/api"
+}

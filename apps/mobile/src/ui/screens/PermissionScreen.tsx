@@ -82,7 +82,7 @@ const PermissionScreen: React.FC = () => {
       }
     } catch (err) {
       dispatch(setError('Failed to request permissions'));
-      console.error('Permission request error:', err);
+      logError(err, 'requestPermissions');
       Alert.alert(
         t('common.error'),
         t('permissions.requestFailed'),

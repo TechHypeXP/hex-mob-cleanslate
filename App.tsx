@@ -96,7 +96,7 @@ export default function App() {
       const { status } = await MediaLibrary.requestPermissionsAsync();
       setHasPermissions(status === 'granted');
     } catch (error) {
-      console.error('Permission request failed:', error);
+      logError(error, 'requestPermissions');
       setHasPermissions(false);
     }
   };

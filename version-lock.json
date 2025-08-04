@@ -1,0 +1,9 @@
+{
+  "sdkVersion": "53.0.0",
+  "lockedDependencies": {
+    "expo": "~53.0.0",
+    "react": "19.0.0",
+    "react-native": "0.74.5"
+  },
+  "lastUpdated": "2025-08-01"
+}

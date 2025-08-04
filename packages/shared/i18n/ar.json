@@ -179,6 +179,10 @@
     "back": "رجوع",
     "next": "التالي",
     "previous": "السابق",
-    "done": "تم"
+    "done": "تم",
+    "select": "تحديد",
+    "selected": "محدد",
+    "selectAll": "تحديد الكل",
+    "deselect": "إلغاء التحديد"
   }
 }

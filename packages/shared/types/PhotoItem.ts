@@ -100,7 +100,7 @@ export interface PhotoProcessingResult {
   action: 'keep' | 'delete' | 'share' | 'private';
   timestamp: Date;
   confidence: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface PhotoBatch {

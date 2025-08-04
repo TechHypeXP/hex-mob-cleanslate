@@ -148,6 +148,7 @@ export class SwipeService {
       };
 
     } catch (error) {
+      logError(error, 'executeSwipeQuery');
       throw new Error(`Query execution failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }

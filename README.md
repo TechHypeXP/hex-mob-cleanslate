@@ -44,6 +44,19 @@ CleanSlate is a React Native Expo application built with Domain-Driven Design (D
 3. **Incremental Development**: Sequential tasks with auto-commit and QR generation
 4. **Budget Tracking**: Monitor API calls and resource usage
 
+### Linting
+This project uses ESLint to enforce code quality. All code must pass the linter before it can be merged. To run the linter locally, use the following command:
+
+```bash
+bun lint
+```
+
+To automatically fix linting errors, run:
+
+```bash
+bun lint:fix
+```
+
 ### Change Log
 - v1.0.0: Initial React Native Expo setup with DDD architecture
 - Documentation: Architecture overview, folder structure, development workflow established

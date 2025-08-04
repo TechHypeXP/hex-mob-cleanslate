@@ -13,6 +13,7 @@ Screens are top-level UI components that represent entire application screens or
 - **PermissionScreen**: Handles app permission requests and explanations
 - **SettingsScreen**: Manages user preferences and app configuration
 - **StatsScreen**: Displays user statistics and analytics
+- **ImageManagementScreen**: Manages photo library viewing and organization
 - **Main Screens**: Core application screens for primary functionality
 
 ## PermissionScreen
@@ -35,6 +36,39 @@ The PermissionScreen handles photo library permission requests and displays the 
 - PhotoPermissionService (application layer)
 - Redux store (infrastructure layer)
 - i18next (shared package)
+
+## ImageManagementScreen
+The ImageManagementScreen handles photo library management, including viewing, sorting, selecting, and performing actions on photos. It was ported from the legacy-v1 implementation and refactored to follow the DDD/Hexagonal architecture.
+
+### Features
+- View photo library with thumbnails
+- Sort photos by creation time, modification time, or filename
+- Select individual photos or all photos
+- Share selected photos
+- Supports internationalization (i18n) with English and Arabic
+- RTL layout support for Arabic language
+- Loading and error states handling
+
+### Architecture
+- **State Management**: Uses Redux Toolkit for managing photo library state
+- **Internationalization**: Uses i18next for multi-language support
+- **UI Components**: Uses React Native components for presentation
+- **Domain Layer**: Uses PhotoItem type from shared package
+- **Application Layer**: Delegates business logic to application services
+
+### Dependencies
+- Redux store (infrastructure layer)
+- i18next (shared package)
+- PhotoItem type (shared package)
+
+### Legacy Port Information
+This screen was ported from the legacy-v1 implementation with the following modernizations:
+- Refactored to follow DDD/Hexagonal architecture
+- Updated to use Redux Toolkit for state management
+- Integrated with i18n for localization
+- Added comprehensive unit and integration tests
+- Implemented RTL support for Arabic language
+- Updated to use modern React patterns and hooks
 
 ## Developer Guidelines
 - Each screen should have a single, focused purpose

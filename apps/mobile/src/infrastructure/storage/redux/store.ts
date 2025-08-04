@@ -9,11 +9,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 // Import reducers
 import permissionsReducer from './permissionsSlice';
+import photosReducer from './photosSlice';
 
 // Create store with Redux Toolkit
 const store = configureStore({
   reducer: {
     permissions: permissionsReducer,
+    photos: photosReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

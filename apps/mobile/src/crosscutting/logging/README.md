@@ -1,36 +1,19 @@
-# Crosscutting Logging
+# Error Logging
 
-## Responsibility
-Logging components handle application logging, error tracking, and audit trails. They provide visibility into application behavior and issues.
+**Architectural Rule:** All error handling within the application must use the centralized `ErrorLogger` utility. Direct use of `console.error`, `console.warn`, or other logging mechanisms for errors is strictly prohibited.
 
-## Architectural Purpose
-- **Error Tracking**: Capture and report application errors and exceptions
-- **Audit Trails**: Record important business operations and user actions
-- **Debug Information**: Provide detailed information for troubleshooting
-- **Performance Monitoring**: Log performance metrics and bottlenecks
+This ensures that all errors are captured, formatted, and processed consistently, which is critical for auditing, monitoring, and compliance.
 
-## Developer Guidelines
-- Implement consistent logging levels (debug, info, warn, error)
-- Include contextual information in log messages
-- Handle sensitive data appropriately (avoid logging PII)
-- Implement structured logging for better analysis
-- Ensure logging doesn't impact application performance
+## Usage
 
-## Examples
+To log an error, import and use the `logError` function:
+
 ```typescript
-// Example logging usage
-import { logger } from './Logger';
+import { logError } from '@/crosscutting/logging/ErrorLogger';
 
-logger.info('User logged in', { userId: user.id });
-logger.error('Failed to upload photo', { 
-  userId: user.id, 
-  photoId: photo.id, 
-  error: error.message 
-});
+try {
+  // some fallible operation
+} catch (error) {
+  logError(error, 'MyComponent');
+}
 ```
-
-## Boundaries
-- Logging belongs to the crosscutting layer
-- Can be used by any layer of the application
-- Should not contain business logic
-- Accessed through dependency injection or static imports

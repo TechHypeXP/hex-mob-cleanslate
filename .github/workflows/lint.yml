@@ -1,0 +1,36 @@
+name: Code Quality & Import Enforcement
+on: [push, pull_request]
+
+jobs:
+  lint-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Lint Import Paths (Alias Enforcement)
+        run: |
+          echo "🔍 Checking import path compliance..."
+          npx eslint . --ext .js,.jsx,.ts,.tsx --format=compact
+          
+      - name: TypeScript Compilation Check
+        run: |
+          echo "🔧 Verifying TypeScript with aliases..."
+          npx tsc --noEmit --project tsconfig.json
+          
+      - name: Import Analysis Report
+        if: failure()
+        run: |
+          echo "❌ Import violations found. Use these aliases:"
+          echo "@shared/* for packages/shared/**"
+          echo "@components/* for components/**" 
+          echo "@hooks/* for hooks/**"
+          echo "@utils/* for utils/**"

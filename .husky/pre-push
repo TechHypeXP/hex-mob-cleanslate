@@ -1,0 +1,24 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Pre-push hook to auto-generate docs and stage changes
+echo "Running pre-push documentation generation..."
+
+# Run the unified docs generation script
+if ! bun run docs:generate; then
+  echo "❌ Documentation generation failed. Push aborted."
+  exit 1
+fi
+
+# Check if any documentation files were changed
+if ! git diff --quiet docs/ || ! git diff --cached --quiet docs/; then
+  echo "Documentation files changed. Staging updates..."
+  # Stage updated documentation files
+  git add docs/
+  echo "✅ Documentation updates staged"
+else
+  echo "✅ No documentation changes to stage"
+fi
+
+echo "✅ Pre-push documentation checks completed"
+exit 0

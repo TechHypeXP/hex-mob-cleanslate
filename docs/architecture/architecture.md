@@ -161,6 +161,58 @@ The photo permissions system handles cross-platform photo library access using E
 - Follows platform-specific permission guidelines
 - Provides clear explanations of why permissions are needed
 
+## Image Management Implementation
+
+### Overview
+The image management system handles photo library viewing, sorting, and organization. It was ported from the legacy-v1 implementation and refactored to follow DDD/Hexagonal architecture principles with full i18n integration, Redux state management, and comprehensive testing.
+
+### Architecture
+- **State Management**: Redux Toolkit manages photo library state
+- **UI Layer**: ImageManagementScreen displays photos and handles user interactions
+- **Internationalization**: i18next integration for multi-language support (English and Arabic)
+- **Domain Layer**: Uses PhotoItem type from shared package for data modeling
+
+### Components
+1. **Photos Redux Slice** (Infrastructure Layer)
+   - Manages photo library state including photos, selection, sorting, and filtering
+   - Handles loading and error states
+   - Provides actions for photo management operations
+
+2. **ImageManagementScreen** (UI Layer)
+   - Displays photo library with thumbnails
+   - Provides sorting options (by creation time, modification time, filename)
+   - Supports photo selection (individual or bulk)
+   - Implements share functionality for selected photos
+   - Supports RTL layouts and i18n
+   - Handles loading and error states
+
+### Data Flow
+1. ImageManagementScreen initializes and loads photos
+2. Photos Redux Slice manages photo state
+3. UI renders photos with sorting and selection options
+4. User interacts with photos (select, sort, share)
+5. Redux state updates with user actions
+6. UI re-renders with updated state
+
+### Legacy Port Information
+This implementation was ported from the legacy-v1 prototype with the following modernizations:
+- Refactored to follow DDD/Hexagonal architecture
+- Updated to use Redux Toolkit for state management
+- Integrated with i18n for localization
+- Added comprehensive unit and integration tests
+- Implemented RTL support for Arabic language
+- Updated to use modern React patterns and hooks
+
+### Features
+- Photo library viewing with thumbnails
+- Sorting by creation time, modification time, or filename
+- Individual and bulk photo selection
+- Share functionality for selected photos
+- Multi-language support (English and Arabic)
+- RTL layout support for Arabic
+- Loading and error state handling
+- Comprehensive test coverage
+
 ## Development Guidelines
 1. Follow the established folder structure and naming conventions
 2. Maintain clear boundaries between architectural layers
