@@ -1,0 +1,8 @@
+{
+  "type-check": "bunx tsc --noEmit",
+  "lint": "bunx eslint . --ext .ts,.tsx --fix",
+  "test": "bunx jest --passWithNoTests", 
+  "build": "bunx expo export",
+  "health-check": "bun run type-check && bun run lint && bun run test && bun run build",
+  "dev": "bunx expo start"
+}
