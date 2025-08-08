@@ -1,0 +1,39 @@
+# hex-mob-cleanslate: Bulletproof Expo SDK v53 Monorepo
+
+## Architecture Overview
+
+This monorepo implements a bulletproof, dependency-aware React Native development environment with the following key principles:
+
+### Core Components
+- **apps/mobile/**: Expo SDK v53 React Native app with universal aliases
+- **packages/shared/**: Shared TypeScript types and utilities  
+- **tools/vrite/**: Content management system (isolated from mobile compilation)
+- **packages/content/**: Generated content artifacts from Vrite
+
+### Key Achievements
+- ✅ **npm eliminated**: Exclusive bun v1.2.19 usage
+- ✅ **Bundle generation**: ESM/CJS conflicts resolved via CommonJS entry point
+- ✅ **Universal aliases**: Clean @shared/types/* imports eliminate relative path hell
+- ✅ **Vrite isolation**: 265+ DOM lib TypeScript errors contained in tools/ layer
+- ✅ **Metro stability**: Consistent Android bundle serving on localhost:8082
+
+## Quick Start
+
+```bash
+# Install dependencies
+bun install
+
+# Start mobile development
+bun run dev:mobile
+
+# Type check mobile app only
+bun run type-check:mobile
+
+# Generate content from Vrite
+bun run content:generate
+```
+
+## Critical Configurations
+- `metro.config.cjs`: Universal aliases + Vrite isolation
+- `tsconfig.base.json`: Root TypeScript project references
+- `bunfig.toml`: Bun import mappings for aliases

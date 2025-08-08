@@ -1,0 +1,21 @@
+name: README Audit
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-readmes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Validate 10x READMEs
+        run: |
+          bun tools/scripts/validate-readmes.cjs

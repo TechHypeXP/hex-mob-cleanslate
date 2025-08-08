@@ -1,0 +1,26 @@
+# Mobile App: hex-mob-cleanslate
+
+## Development Environment
+- **Framework**: Expo SDK v53
+- **Runtime**: React Native 0.79.5 / React 19
+- **Package Manager**: bun v1.2.19 (exclusive)
+- **Platform Focus**: Android-first development
+
+## Universal Aliases
+Instead of ugly relative imports:
+```typescript
+// ❌ Don't do this
+import { PhotoItem } from '../../../../../packages/shared/types/PhotoItem';
+
+// ✅ Do this
+import { PhotoItem } from '@shared/types/PhotoItem';
+```
+
+## Development Scripts
+- `bun run type-check:mobile`: TypeScript validation (mobile-only)
+- `bunx expo start --android --localhost --port 8082`: Start Metro server
+
+## TypeScript Configuration
+- **Composite project**: References packages/shared for clean type resolution
+- **React Native types only**: DOM libs excluded to prevent conflicts
+- **Source file references**: No build dependencies, direct type checking

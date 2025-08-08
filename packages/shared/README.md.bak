@@ -1,0 +1,22 @@
+# Shared Types and Utilities
+
+## Purpose
+This package contains shared TypeScript types and utilities that are used across multiple applications in the monorepo.
+
+## Structure
+- **types/**: Shared TypeScript interfaces and type definitions
+- **utils/**: Utility functions (when added)
+- **constants/**: Shared constants (when added)
+
+## Usage
+Import shared types using the universal alias:
+
+```typescript
+import { PhotoItem } from '@shared/types/PhotoItem';
+import { PermissionStatus } from '@shared/types/PermissionStatus';
+```
+
+## TypeScript Configuration
+- **No build step**: Source files are referenced directly
+- **skipLibCheck**: Enabled to prevent conflicts with Vrite tooling
+- **Composite project**: Part of the monorepo's project reference system
