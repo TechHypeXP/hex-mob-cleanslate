@@ -2,41 +2,21 @@
  * PhotoModel - Domain Entity
  * Core representation of user photos with business logic
  */
-export interface PhotoItem {
-  id: string;
-  uri: string;
-  createdAt: Date;
-  isFavorite: boolean;
-  tags: string[];
-  metadata?: {
-    width: number;
-    height: number;
-    size: number;
-  };
-}
+import { PhotoItem } from '@shared/types/PhotoItem';
 
 export class PhotoModel implements PhotoItem {
   constructor(
     public id: string,
     public uri: string,
-    public createdAt: Date = new Date(),
-    public isFavorite: boolean = false,
-    public tags: string[] = [],
-    public metadata?: { width: number; height: number; size: number }
+    public filename: string,
+    public width: number,
+    public height: number,
+    public fileSize: number,
+    public mimeType: string,
+    public creationTime: number,
+    public modificationTime: number,
+    public albumId?: string,
+    public location?: PhotoItem['location'],
+    public exif?: PhotoItem['exif']
   ) {}
-
-  // Domain methods
-  toggleFavorite(): void {
-    this.isFavorite = !this.isFavorite;
-  }
-
-  addTag(tag: string): void {
-    if (!this.tags.includes(tag)) {
-      this.tags.push(tag);
-    }
-  }
-
-  removeTag(tag: string): void {
-    this.tags = this.tags.filter(t => t !== tag);
-  }
 }

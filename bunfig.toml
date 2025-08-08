@@ -1,0 +1,10 @@
+[install]
+registry = "https://registry.npmjs.org/"
+cache = true
+exact = false
+
+[import]
+convertLockfile = true
+
+[run]
+shell = "system"

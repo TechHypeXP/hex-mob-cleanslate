@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/mobile/tsconfig.json"
+    }
+  ],
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
+}

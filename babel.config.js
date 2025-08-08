@@ -1,3 +1,6 @@
+/* eslint-env node */
+/* eslint-env node */
+// @ts-expect-error
 module.exports = function(api) {
   api.cache(true);
   return {

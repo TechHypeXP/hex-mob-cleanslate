@@ -84,3 +84,6 @@ elif command -v adb >/dev/null 2>&1; then
 fi
 
 echo "✅ Conservative reset complete"
+# Clean stale bun temp directories
+sudo rm -rf /tmp/bun-* 2>/dev/null || true
+sudo rm -rf /tmp/1.* 2>/dev/null || true

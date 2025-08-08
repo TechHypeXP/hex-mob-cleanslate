@@ -31,7 +31,7 @@ import {
 import { RootState } from '../../infrastructure/storage/redux/store';
 
 // Import shared types
-import { PhotoItem } from '../../../../../packages/shared/types/PhotoItem';
+import { PhotoItem } from '@shared/types/PhotoItem';
 
 // Import UI components
 import { SwipeCard } from '../SwipeCard';

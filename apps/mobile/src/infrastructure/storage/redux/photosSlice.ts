@@ -6,7 +6,7 @@
  */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PhotoItem } from '../../../../../../packages/shared/types/PhotoItem';
+import { PhotoItem } from '@shared/types/PhotoItem';
 
 // Define the photos state structure
 export interface PhotosState {

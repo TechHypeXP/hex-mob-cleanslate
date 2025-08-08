@@ -1,0 +1,34 @@
+/**
+ * ROOT TYPESCRIPT CONFIGURATION FOR MONOREPO
+ * 
+ * This configuration provides the foundation for TypeScript project references
+ * and universal alias resolution across all packages in the monorepo.
+ * 
+ * Key Features:
+ * - Project references for composite builds
+ * - Universal path aliases for clean imports
+ * - Base compiler options for consistent type checking
+ * 
+ * Last Updated: 2025-08-07T20:00:36Z
+ * Related: apps/mobile/tsconfig.json, packages/shared/tsconfig.json
+ */
+
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/types/*": ["./packages/shared/types/*"],
+      "@shared/*": ["./packages/shared/*"],
+      "@content/*": ["./packages/content/*"]
+    }
+  },
+  "references": [
+    { "path": "./apps/mobile" },
+    { "path": "./packages/shared" },
+    { "path": "./packages/content" }
+  ],
+  "exclude": [
+    "tools/vrite/src/**"
+  ]
+}
