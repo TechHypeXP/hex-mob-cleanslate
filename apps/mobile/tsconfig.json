@@ -1,0 +1,26 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "jsx": "react-native",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "bundler",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["ui/components/*"],
+      "@hooks/*": ["crosscutting/hooks/*"],
+      "@shared/*": ["../../packages/shared/*"],
+      "@shared/types/*": ["../../packages/shared/types/*"],
+      "@shared/store/*": ["../../packages/shared/store/*"]
+    },
+    "types": ["react", "react-native", "expo"]
+  },
+  "exclude": [
+    "../../tools/**",
+    "../../archive/**",
+    "../../legacy/**",
+    "**/__generated__/**",
+    "**/dist/**"
+  ],
+  "include": ["./src", "./index.ts", "./index.tsx", "./App.tsx"]
+}
