@@ -2,21 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
+      "path": "./apps/mobile/tsconfig.json"
     }
   ],
-  "compilerOptions": {
-    "baseUrl": "apps/mobile/src",
-    "paths": {
-      "@components/*": ["ui/components/*"],
-      "@shared/store/*": ["application/store/*"],
-      "@hooks/*": ["crosscutting/hooks/*"]
-    }
-  },
   "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "composite": true
+  },
   "include": [
     "**/*.ts",
     "**/*.tsx",
