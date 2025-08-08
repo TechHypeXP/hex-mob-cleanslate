@@ -1,75 +1,70 @@
 {
-  "expo": {
-    "name": "hex-mob-cleanslate",
-    "slug": "hex-mob-cleanslate",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./src/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+  "name": "hex-mob-cleanslate",
+  "slug": "hex-mob-cleanslate",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./src/assets/icon.png",
+  "userInterfaceStyle": "automatic",
+  "splash": {
+    "image": "./src/assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": false,
+    "bundleIdentifier": "com.cleanslate.mobile",
+    "infoPlist": {
+      "NSPhotoLibraryUsageDescription": "Allow CleanSlate to access your photos for organization and management.",
+      "NSPhotoLibraryAddUsageDescription": "Allow CleanSlate to save organized photos to your library.",
+      "NSCameraUsageDescription": "CleanSlate may need camera access for photo capture features.",
+      "ITSAppUsesNonExemptEncryption": false
+    }
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./src/assets/adaptive-icon.png",
+      "backgroundColor": "#FFFFFF"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "com.cleanslate.mobile",
-      "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "Allow CleanSlate to access your photos for organization and management.",
-        "NSPhotoLibraryAddUsageDescription": "Allow CleanSlate to save organized photos to your library.",
-        "NSCameraUsageDescription": "CleanSlate may need camera access for photo capture features.",
-        "ITSAppUsesNonExemptEncryption": false
+    "package": "com.cleanslate.mobile",
+    "permissions": [
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE",
+      "CAMERA",
+      "VIBRATE",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_MEDIA_LOCATION"
+    ]
+  },
+  "web": {
+    "favicon": "./src/assets/favicon.png",
+    "bundler": "metro"
+  },
+  "plugins": [
+    [
+      "expo-media-library",
+      {
+        "photosPermission": "Allow CleanSlate to access your photos for organization and management.",
+        "savePhotosPermission": "Allow CleanSlate to save organized photos to your library.",
+        "isAccessMediaLocationEnabled": true
       }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.cleanslate.mobile",
-      "permissions": [
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
-        "CAMERA",
-        "VIBRATE",
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.ACCESS_MEDIA_LOCATION"
-      ]
-    },
-    "web": {
-      "favicon": "./src/assets/favicon.png",
-      "bundler": "metro"
-    },
-    "plugins": [
-      [
-        "expo-media-library",
-        {
-          "photosPermission": "Allow CleanSlate to access your photos for organization and management.",
-          "savePhotosPermission": "Allow CleanSlate to save organized photos to your library.",
-          "isAccessMediaLocationEnabled": true
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "eas": {
-        "projectId": "96e0d105-47e9-409d-88a9-8431da22e283"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/96e0d105-47e9-409d-88a9-8431da22e283"
+    ]
+  ],
+  "experiments": {
+    "typedRoutes": true
+  },
+  "extra": {
+    "eas": {
+      "projectId": "96e0d105-47e9-409d-88a9-8431da22e283"
     }
   },
   "runtimeVersion": {
     "policy": "appVersion"
+  },
+  "updates": {
+    "url": "https://u.expo.dev/96e0d105-47e9-409d-88a9-8431da22e283"
   }
 }
