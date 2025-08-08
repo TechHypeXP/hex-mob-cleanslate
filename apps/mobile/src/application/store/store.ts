@@ -24,6 +24,3 @@ setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// ✅ PERFORMANCE: Optimized selectors prevent unnecessary re-renders
-export { store };

@@ -1,6 +1,6 @@
 /**
  * i18n Configuration
- * 
+ *
  * Internationalization setup for the CleanSlate Mobile App.
  * Uses shared translation files from the packages/shared/i18n directory.
  */
@@ -9,8 +9,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // Import shared translation resources
-import en from '../../../../../packages/shared/i18n/en.json';
-import ar from '../../../../../packages/shared/i18n/ar.json';
+import en from '../../../../../../packages/shared/i18n/en.json';
+import ar from '../../../../../../packages/shared/i18n/ar.json';
 
 // Detect device language
 const deviceLanguage = () => {
