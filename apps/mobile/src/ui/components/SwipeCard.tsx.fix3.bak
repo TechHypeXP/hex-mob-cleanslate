@@ -69,7 +69,7 @@ export const SwipeCard: React.FC<SwipeCardProps> = ({
   });
 
   // Animated styles for the card
-  const animatedStyle = useAnimatedStyle((): any => {
+  const animatedStyle = useAnimatedStyle(() => {
     const rotation = interpolate(
       translateX.value,
       [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
