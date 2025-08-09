@@ -8,7 +8,7 @@ Owner: engineering
 Last-Updated: 2025-08-09
 */
 
-#!/usr/bin/env node
+
 
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
