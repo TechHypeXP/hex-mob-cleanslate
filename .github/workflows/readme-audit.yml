@@ -22,4 +22,4 @@ jobs:
 
       - name: Validate 10x READMEs
         run: |
-          node --input-type=module tools/scripts/validate-readmes.mjs
+          node tools/scripts/validate-readmes.mjs
