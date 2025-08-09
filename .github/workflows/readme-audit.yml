@@ -11,11 +11,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Validate 10x READMEs
         run: |
-          bun tools/scripts/validate-readmes.cjs
+          pnpm exec node tools/scripts/validate-readmes.cjs
