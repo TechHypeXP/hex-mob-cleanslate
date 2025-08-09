@@ -22,4 +22,4 @@ jobs:
 
       - name: Validate 10x READMEs
         run: |
-          pnpm exec node tools/scripts/validate-readmes.cjs
+          node tools/scripts/validate-readmes.mjs
