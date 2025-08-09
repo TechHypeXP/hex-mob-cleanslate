@@ -1,0 +1,52 @@
+/**
+ * @file Purpose:
+ * @Inputs:
+ * @Outputs:
+ * @Usage:
+ * @Owner:
+ * @Last-Updated:
+ */
+EOF && cat > tools/scripts/validate-inline-docs.cjs <<'EOF'
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+function getChangedFiles() {
+  try {
+    // Get files changed in the current commit and staged files
+    const staged = execSync('git diff --cached --name-only', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    const committed = execSync('git diff --name-only HEAD~1..HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    const allChanged = new Set([...staged.split('\n'), ...committed.split('\n')]);
+    // Filter out ignored files and directories
+    return Array.from(allChanged).filter(f => !f.startsWith('archive/tools-archived/vrite/') && !f.startsWith('node_modules/') && !f.startsWith('.git/'));
+  } catch (e) {
+    console.error("Error getting changed files:", e);
+    return [];
+  }
+}
+
+const exts = new Set(['.ts', '.tsx', '.js', '.cjs', '.sh']);
+const files = getChangedFiles().filter(f => exts.has(path.extname(f)));
+const missing = [];
+
+for (const file of files) {
+  try {
+    const content = fs.readFileSync(file, 'utf8');
+    // Check for the presence of the inline docs block at the beginning of the file
+    const hasBlock = content.startsWith('/**') || content.startsWith('#!/bin') || content.startsWith('# ');
+    if (!hasBlock) {
+      missing.push(file);
+    }
+  } catch (readError) {
+    console.error(`Error reading file ${file}:`, readError);
+  }
+}
+
+if (missing.length) {
+  console.error('Inline docs missing in:', missing.join(', '));
+  process.exit(1);
+} else {
+  console.log('Inline docs validator: OK');
+  process.exit(0);
+}
+EOF && chmod +x tools/scripts/validate-inline-docs.cjs

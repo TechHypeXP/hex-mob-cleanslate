@@ -13,7 +13,9 @@
       "@shared/types/*": ["../../packages/shared/types/*"],
       "@shared/store/*": ["../../packages/shared/store/*"]
     },
-    "types": ["react", "react-native", "expo"]
+    "types": ["react", "react-native", "expo"],
+    "composite": true,
+    "noEmit": true
   },
   "exclude": [
     "../../tools/**",
