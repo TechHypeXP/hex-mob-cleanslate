@@ -73,4 +73,10 @@ export default [
       'no-undef': 'off',
     },
   },
+  {
+    rules: {
+      'import/export': 'off',
+      '@typescript-eslint/ban-types': 'off',
+    },
+  },
 ];
