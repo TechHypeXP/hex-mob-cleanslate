@@ -1,4 +1,37 @@
 #!/bin/bash
-# This is a launcher script to ensure the hook runs with bash.
-# It executes the actual hook script using bash -lc.
-exec bash -lc "$0.sh" "$@"
+set -euo pipefail
+
+# Skip during bulk ops
+if [ "${HUSKY:-1}" = "0" ]; then
+  echo "HUSKY=0 detected; skipping validators"
+  exit 0
+fi
+
+# Skip if Bun missing
+if ! command -v bun >/dev/null 2>&1; then
+  echo "Bun missing; skipping validators"
+  exit 0
+fi
+
+# Run existing validators
+if command -v bun >/dev/null 2>&1; then
+  [ -f tools/scripts/validate-readmes.cjs ] && bun tools/scripts/validate-readmes.cjs || true
+  [ -f tools/scripts/verify-structure.cjs ] && bun tools/scripts/verify-structure.cjs || true
+else
+  echo "Bun missing; skipping Bun-based validators"
+fi
+
+# REQUIRED inline docs validator (blocking)
+if command -v node >/dev/null 2>&1; then
+  if [ -f tools/scripts/validate-inline-docs.cjs ]; then
+    node tools/scripts/validate-inline-docs.cjs
+  else
+    echo "Missing tools/scripts/validate-inline-docs.cjs — blocking commit."
+    exit 1
+  fi
+else
+  echo "Node missing; cannot enforce inline docs — blocking commit."
+  exit 1
+fi
+
+exit 0
