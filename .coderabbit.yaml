@@ -1,0 +1,101 @@
+version: 1
+
+review:
+  # Scope: docs/CI hygiene + light touch on app code to reduce noise
+  paths:
+    include:
+      - README.md
+      - README_AUDIT_REPORT.md
+      - docs/**
+      - tools/**
+      - templates/**
+      - .github/workflows/**
+      - .husky/**
+      - apps/**/README.md
+      - packages/**/README.md
+      - tsconfig.json
+      - apps/**/tsconfig.json
+      - packages/**/tsconfig.json
+    exclude:
+      - node_modules/**
+      - .expo/**
+      - android/**
+      - ios/**
+      - dist/**
+      - build/**
+      - coverage/**
+      - .turbo/**
+      - .next/**
+      - .expo/**
+
+  rules:
+    # Prioritize signal: security > build/CI > broken runtime > style
+    priorities:
+      - category: security
+        weight: 10
+      - category: build
+        weight: 8
+      - category: runtime
+        weight: 7
+      - category: maintainability
+        weight: 5
+      - category: style
+        weight: 2
+
+    # Reduce noise on known non-critical areas for PR2
+    suppress:
+      - message: "nit"
+      - message: "minor style"
+      - message: "naming suggestion"
+
+  # Gate suggestions to actionable items with repro context
+  suggestion_policy:
+    require_repro_steps: true
+    require_code_example: true
+    max_suggestions: 30
+    group_by_file: true
+
+  # Tailor messages for TypeScript/React Native/Expo
+  linters:
+    typescript:
+      enabled: true
+      strict_null_checks: true
+      no_implicit_any: true
+    eslint:
+      enabled: true
+      config_paths:
+        - .eslintrc.cjs
+        - packages/**/.eslintrc.cjs
+        - apps/**/.eslintrc.cjs
+
+  # CI-friendly: fail on high-impact issues in touched areas
+  thresholds:
+    fail_on:
+      security: high
+      build: high
+    warn_on:
+      runtime: high
+      maintainability: medium
+    allow:
+      style: all
+
+  comments:
+    tone: concise
+    include_code: true
+    require_rationale: true
+    require_fix_diff: true
+
+metadata:
+  project: hex-mob-cleanslate
+  phase: PR2-docs-ci
+  stack:
+    runtime: bun
+    platform: react-native-expo
+    ci: github-actions
+  conventions:
+    commit_prefixes:
+      - docs
+      - ci
+      - chore
+      - fix
+      - refactor
