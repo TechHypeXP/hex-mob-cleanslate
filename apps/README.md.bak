@@ -1,0 +1,32 @@
+# apps — Layer Doc (9-tier architecture)
+
+Purpose
+- What belongs in this tier; what problems it solves; strict boundaries. [docs on Expo/TS/Metro alias behavior for SDK≥50+ support referencing tsconfig paths][1][12][15]
+
+Ownership & Boundaries
+- Allowed imports: document per PRD.
+- Forbidden imports: document per PRD.
+- Cross-tier rules: document per PRD. [TS paths are resolved relative to baseUrl; Metro honors tsconfig paths in Expo SDK≥50 by default][7][1]
+
+Folder Map
+- Expected subfolders and file roles.
+
+Public API (exports)
+- What this layer exposes to others.
+
+Alias & Resolution
+- TS alias used here: document per PRD (e.g., @shared/*, @components/*).
+- baseUrl context: apps/mobile uses baseUrl=./src; shared maps are absolute to repo root via relative paths. [Expo tsconfigPaths enabled by default; restart CLI after tsconfig changes][1][3][12][15]
+
+Testing & Quality Gates
+- Unit/integration/e2e scope for this tier; fixtures policy.
+
+Security-by-Design
+- Data flow constraints, no side-effects across boundaries, secrets policy.
+
+Change Control
+- Structure is set in stone; any change requires PRD-governed RFC.
+
+References
+- /docs architecture overview, alias setup, DI guidelines.
+

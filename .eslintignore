@@ -1,0 +1,3 @@
+node_modules/
+legacy-v1/
+*.config.js

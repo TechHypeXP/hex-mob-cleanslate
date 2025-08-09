@@ -1,12 +1,191 @@
-// Placeholder for SwipeCard - will be implemented according to UI layer principles
 import React from 'react';
-import { View, Text } from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  runOnJS,
+  interpolate,
+  useDerivedValue,
+} from 'react-native-reanimated';
 
-export const SwipeCard = () => {
+// Import the new SwipeOverlay component
+import { SwipeOverlay } from '../SwipeOverlay';
+
+// Define PhotoItem interface locally since the import path is incorrect
+interface PhotoItem {
+  id: string;
+  uri: string;
+  width: number;
+  height: number;
+}
+
+interface SwipeCardProps {
+  photo: PhotoItem;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
+  onSwipeUp?: () => void;
+  onSwipeDown?: () => void;
+}
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const SWIPE_THRESHOLD = 120;
+const VELOCITY_THRESHOLD = 500;
+
+export const SwipeCard: React.FC<SwipeCardProps> = ({ 
+  photo,
+  onSwipeLeft,
+  onSwipeRight,
+  onSwipeUp,
+  onSwipeDown
+}) => {
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const isDragging = useSharedValue(false);
+  const direction = useSharedValue<'left' | 'right' | 'up' | 'down' | null>(null);
+
+  // Calculate gesture distance for overlay opacity
+  const gestureDistance = useDerivedValue(() => {
+    return Math.sqrt(translateX.value * translateX.value + translateY.value * translateY.value);
+  });
+
+  // Update direction when values change
+  useDerivedValue(() => {
+    const absX = Math.abs(translateX.value);
+    const absY = Math.abs(translateY.value);
+    
+    if (absX > absY) {
+      direction.value = translateX.value > 0 ? 'right' : 'left';
+    } else {
+      direction.value = translateY.value > 0 ? 'down' : 'up';
+    }
+  });
+
+  // Animated styles for the card
+  const animatedStyle = useAnimatedStyle((): any => {
+    const rotation = interpolate(
+      translateX.value,
+      [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+      [-15, 0, 15]
+    );
+
+    return {
+      transform: [
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+        { rotate: `${rotation}deg` },
+        { scale: scale.value }
+      ],
+    };
+  });
+
+  // Gesture handler with physics-based animations
+  const gesture = Gesture.Pan()
+    .onStart(() => {
+      isDragging.value = true;
+      scale.value = withSpring(1.05, { damping: 15, stiffness: 300 });
+    })
+    .onUpdate((event) => {
+      translateX.value = event.translationX;
+      translateY.value = event.translationY;
+    })
+    .onEnd((event) => {
+      isDragging.value = false;
+      const velocity = Math.sqrt(event.velocityX * event.velocityX + event.velocityY * event.velocityY);
+      const distance = Math.sqrt(translateX.value * translateX.value + translateY.value * translateY.value);
+      
+      // Determine if swipe should complete based on distance or velocity
+      const shouldComplete = distance > SWIPE_THRESHOLD || velocity > VELOCITY_THRESHOLD;
+      
+      if (shouldComplete) {
+        const absX = Math.abs(translateX.value);
+        const absY = Math.abs(translateY.value);
+        
+        if (absX > absY) {
+          // Horizontal swipe
+          if (translateX.value > 0) {
+            // Swipe right - Keep
+            translateX.value = withSpring(SCREEN_WIDTH * 1.5, {
+              velocity: event.velocityX,
+              damping: 12,
+              stiffness: 100,
+            }, () => {
+              if (onSwipeRight) runOnJS(onSwipeRight)();
+            });
+          } else {
+            // Swipe left - Delete
+            translateX.value = withSpring(-SCREEN_WIDTH * 1.5, {
+              velocity: event.velocityX,
+              damping: 12,
+              stiffness: 100,
+            }, () => {
+              if (onSwipeLeft) runOnJS(onSwipeLeft)();
+            });
+          }
+        } else {
+          // Vertical swipe
+          if (translateY.value < 0) {
+            // Swipe up - Share
+            translateY.value = withSpring(-SCREEN_WIDTH * 1.5, {
+              velocity: event.velocityY,
+              damping: 12,
+              stiffness: 100,
+            }, () => {
+              if (onSwipeUp) runOnJS(onSwipeUp)();
+            });
+          } else {
+            // Swipe down - Private
+            translateY.value = withSpring(SCREEN_WIDTH * 1.5, {
+              velocity: event.velocityY,
+              damping: 12,
+              stiffness: 100,
+            }, () => {
+              if (onSwipeDown) runOnJS(onSwipeDown)();
+            });
+          }
+        }
+      } else {
+        // Spring back to center
+        translateX.value = withSpring(0, { damping: 15, stiffness: 300 });
+        translateY.value = withSpring(0, { damping: 15, stiffness: 300 });
+        scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+      }
+    });
+
   return (
-    <View>
-      <Text>Swipe Card</Text>
-      {/* TODO: Implement swipe card according to UI layer rules */}
-    </View>
+    <GestureDetector gesture={gesture}>
+      <Animated.View style={[styles.container, animatedStyle]}>
+        <Image source={{ uri: photo.uri }} style={styles.image} />
+        
+        {/* Directional overlays */}
+        <SwipeOverlay
+          direction={direction}
+          gestureDistance={gestureDistance}
+          isDragging={isDragging}
+        />
+      </Animated.View>
+    </GestureDetector>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: 300,
+    height: 400,
+    borderRadius: 10,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+});

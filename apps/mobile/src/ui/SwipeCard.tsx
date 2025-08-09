@@ -1,17 +1,58 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Image, 
-  StyleSheet, 
+import {
+  View,
+  Image,
+  StyleSheet,
   GestureResponderEvent,
   Animated,
   PanResponder,
   PanResponderInstance
 } from 'react-native';
-import { PhotoItem } from '../../../../../../packages/shared/types/PhotoItem';
 
 // Import icons for directional overlays
 import { Share2, Lock, Check, X, Heart, Trash2 } from 'lucide-react-native';
+
+interface PhotoItem {
+  id: string;
+  uri: string;
+  filename: string;
+  width: number;
+  height: number;
+  fileSize: number;
+  mimeType: string;
+  creationTime: number;
+  modificationTime: number;
+  albumId?: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+    altitude?: number;
+    accuracy?: number;
+    heading?: number;
+    speed?: number;
+  };
+  exif?: {
+    make?: string;
+    model?: string;
+    software?: string;
+    dateTime?: string;
+    dateTimeOriginal?: string;
+    dateTimeDigitized?: string;
+    orientation?: number;
+    xResolution?: number;
+    yResolution?: number;
+    resolutionUnit?: number;
+    flash?: number;
+    focalLength?: number;
+    iso?: number;
+    aperture?: number;
+    shutterSpeed?: number;
+    whiteBalance?: number;
+    exposureMode?: number;
+    meteringMode?: number;
+    colorSpace?: number;
+  };
+}
 
 interface SwipeCardProps {
   photo: PhotoItem;

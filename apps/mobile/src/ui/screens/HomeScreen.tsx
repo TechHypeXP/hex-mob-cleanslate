@@ -27,7 +27,7 @@ export default function HomeScreen() {
 
   const handleSwipeAction = useCallback((direction: 'left' | 'right' | 'up' | 'down') => {
     // Legacy UX preservation: Haptic feedback on swipe
-    triggerHaptic('impactMedium');
+    triggerHaptic('medium');
     
     // Gamification: Increment streak
     dispatch(incrementStreak());
@@ -46,9 +46,12 @@ export default function HomeScreen() {
           <ActivityIndicator size="large" color="#0000ff" />
         ) : currentPhoto ? (
           <Animated.View entering={FadeInDown.duration(500)}>
-            <SwipeCard 
+            <SwipeCard
               photo={currentPhoto}
-              onSwipe={handleSwipeAction}
+              onSwipeLeft={() => handleSwipeAction('left')}
+              onSwipeRight={() => handleSwipeAction('right')}
+              onSwipeUp={() => handleSwipeAction('up')}
+              onSwipeDown={() => handleSwipeAction('down')}
             />
           </Animated.View>
         ) : (

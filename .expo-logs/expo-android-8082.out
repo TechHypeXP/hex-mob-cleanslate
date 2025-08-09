@@ -1,0 +1,37 @@
+Starting project at /home/kellyb_dev/projects/hex-mob-cleanslate
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+› Opening exp://127.0.0.1:8082 on Samsung_Galaxy_A72-A725F
+Waiting on http://localhost:8082
+Logs for your project will appear below.
+Android node_modules/expo/AppEntry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Android Bundling failed 1146ms node_modules/expo/AppEntry.js (1 module)
+ ERROR  node_modules/expo/AppEntry.js: module is not defined in ES module scope
+This file is being treated as an ES module because it has a '.js' file extension and '/home/kellyb_dev/projects/hex-mob-cleanslate/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+Android node_modules/expo/AppEntry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Android Bundling failed 27ms node_modules/expo/AppEntry.js (1 module)
+ ERROR  node_modules/expo/AppEntry.js: Unexpected module status 5. Cannot require() ES Module /home/kellyb_dev/projects/hex-mob-cleanslate/babel.config.js because it is not yet fully loaded. This may be caused by a race condition if the module is simultaneously dynamically import()-ed via Promise.all(). Try await-ing the import() sequentially in a loop instead. (from /home/kellyb_dev/projects/hex-mob-cleanslate/node_modules/@babel/core/lib/config/files/module-types.js)
+This is caused by either a bug in Node.js or incorrect usage of Node.js internals.
+Please open an issue with this stack trace at https://github.com/nodejs/node/issues
+
+Android ./index.android.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Android Bundling failed 291ms index.android.js (1 module)
+ ERROR  index.android.js: Unexpected module status 5. Cannot require() ES Module /home/kellyb_dev/projects/hex-mob-cleanslate/babel.config.js because it is not yet fully loaded. This may be caused by a race condition if the module is simultaneously dynamically import()-ed via Promise.all(). Try await-ing the import() sequentially in a loop instead. (from /home/kellyb_dev/projects/hex-mob-cleanslate/node_modules/@babel/core/lib/config/files/module-types.js)
+This is caused by either a bug in Node.js or incorrect usage of Node.js internals.
+Please open an issue with this stack trace at https://github.com/nodejs/node/issues
+
+Android Bundling failed 9ms index.android.js (1 module)
+ ERROR  index.android.js: Unexpected module status 5. Cannot require() ES Module /home/kellyb_dev/projects/hex-mob-cleanslate/babel.config.js because it is not yet fully loaded. This may be caused by a race condition if the module is simultaneously dynamically import()-ed via Promise.all(). Try await-ing the import() sequentially in a loop instead. (from /home/kellyb_dev/projects/hex-mob-cleanslate/node_modules/@babel/core/lib/config/files/module-types.js)
+This is caused by either a bug in Node.js or incorrect usage of Node.js internals.
+Please open an issue with this stack trace at https://github.com/nodejs/node/issues
+
+Android Bundling failed 20ms node_modules/expo/AppEntry.js (1 module)
+ ERROR  node_modules/expo/AppEntry.js: Unexpected module status 5. Cannot require() ES Module /home/kellyb_dev/projects/hex-mob-cleanslate/babel.config.js because it is not yet fully loaded. This may be caused by a race condition if the module is simultaneously dynamically import()-ed via Promise.all(). Try await-ing the import() sequentially in a loop instead. (from /home/kellyb_dev/projects/hex-mob-cleanslate/node_modules/@babel/core/lib/config/files/module-types.js)
+This is caused by either a bug in Node.js or incorrect usage of Node.js internals.
+Please open an issue with this stack trace at https://github.com/nodejs/node/issues
+
+Android Bundling failed 15ms node_modules/expo/AppEntry.js (1 module)
+ ERROR  node_modules/expo/AppEntry.js: Unexpected module status 5. Cannot require() ES Module /home/kellyb_dev/projects/hex-mob-cleanslate/babel.config.js because it is not yet fully loaded. This may be caused by a race condition if the module is simultaneously dynamically import()-ed via Promise.all(). Try await-ing the import() sequentially in a loop instead. (from /home/kellyb_dev/projects/hex-mob-cleanslate/node_modules/@babel/core/lib/config/files/module-types.js)
+This is caused by either a bug in Node.js or incorrect usage of Node.js internals.
+Please open an issue with this stack trace at https://github.com/nodejs/node/issues
+

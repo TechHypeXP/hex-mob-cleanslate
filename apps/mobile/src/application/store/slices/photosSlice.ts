@@ -1,15 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface PhotoItem {
-  id: string;
-  uri: string;
-  width: number;
-  height: number;
-  filename: string;
-  creationTime: number;
-  mediaType: 'photo' | 'video';
-  duration?: number;
-}
+import { PhotoItem } from '@shared/types/PhotoItem';
 
 interface PhotosState {
   currentPhoto: PhotoItem | null;
