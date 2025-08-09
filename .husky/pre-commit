@@ -1,9 +1,4 @@
-#!/usr/bin/env bash
-# Husky pre-commit hook to validate README compliance
-set -euo pipefail
-
-if [ -f tools/scripts/validate-readmes.cjs ]; then
-  bun tools/scripts/validate-readmes.cjs
-else
-  echo "⚠️ Skipping README validator (script missing)"
-fi
+#!/bin/bash
+# This is a launcher script to ensure the hook runs with bash.
+# It executes the actual hook script using bash -lc.
+exec bash -lc "$0.sh" "$@"
