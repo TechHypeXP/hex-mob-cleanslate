@@ -11,9 +11,8 @@
     "build": "bunx expo export",
     "type-check": "bunx --bun tsc -p apps/mobile/tsconfig.json --noEmit",
     "lint": "bunx eslint . --ext .ts,.tsx --fix",
-    "lint:fix": "bunx eslint . --ext .ts,.tsx --fix",
     "test": "bunx jest --passWithNoTests",
-    "test:watch": "bun test --watch",
+    "test:watch": "bunx jest --watch",
     "test:e2e": "bunx detox test",
     "prepare": "husky",
     "typedoc": "bunx typedoc",
@@ -83,6 +82,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "expo-cli": "^6.3.10",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
@@ -90,7 +90,7 @@
     "react-test-renderer": "19.0.0",
     "remark-lint": "^10.0.1",
     "typedoc": "^0.28.8",
-    "typescript": "^5.8.3",
+    "typescript":"~5.8.3",
     "typescript-eslint": "^8.38.0"
   },
   "lint-staged": {

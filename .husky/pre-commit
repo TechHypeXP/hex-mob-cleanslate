@@ -1,3 +1,3 @@
-#!/bin/sh
-# Wrapper run by Husky: always exec bash
-exec bash -lc ".husky/pre-commit.sh"
+#!/usr/bin/env bash
+set -e
+node tools/scripts/verify-version-lock.mjs
